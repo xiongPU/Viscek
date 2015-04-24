@@ -1,0 +1,23 @@
+Viscek = Viscek.o
+Eta = EtaViscek.o
+Measure = Measurement.o
+objects = $(Viscek) $(Measure) $(Eta)
+deps = Viscek.hpp Measurement.hpp
+RM = rm
+CXX= g++ -std=c++11
+CXXFLAGS = -c -Wall
+
+all: EtaViscek $(objects)
+
+EtaViscek: $(objects)
+	$(CXX) -o $@ $^
+
+%.o: %.cpp $(deps)
+	$(CXX) ${CXXFLAGS} -c -o $@ $<
+
+
+#.PHONY: clean
+clean:
+	rm EtaViscek $(objects)
+
+#-include .depend
